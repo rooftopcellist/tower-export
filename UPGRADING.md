@@ -1,13 +1,8 @@
-# Tower CLI Import/Export Feature Usage
+# Migrating Data Between AWX Installations
 
 ## Introduction
 
-This feature allows AWX users to export resources from a running tower node, and import them into another 
-tower node.  This tool is especially useful for users who want to upgrade from an old version of AWX when 
-the upgrade path is not seamless as a result of database migrations, dependency changes, etc.  
-
-This allows you to export your job templates and other objects (not including credential secrets) to a JSON 
-file, which you can then re-import to a freshly installed AWX version of your choosing.  
+Upgrades using Django migrations are not expected to work in AWX.  As a result, to upgrade to a new version, it is necessary to export resources from the old AWX node and import them into a freshly-installed node with the new version.  The recommended way to do this is to use the tower-cli send/receive feature.
 
 This tool does __not__ support export/import of the following:
 * Logs/history
@@ -23,7 +18,7 @@ $ pip install ansible-tower-cli
 
 The AWX host URL, user, and password must be set for the AWX instance to be exported:
 ```
-$ tower-cli config host <tower.example.com>
+$ tower-cli config host <old-awx-host.example.com>
 $ tower-cli config username <user>
 $ tower-cli config password <pass>
 ```
@@ -54,7 +49,7 @@ If you are installing AWX as a dev container, pull down the latest code or versi
 the image locally, then start the container
 
 ```
-git clone git@github.com:ansible/awx.git        # clone AWX repository
+git pull                                        # retrieve latest AWX changes from repository
 make docker-compose-build                       # build AWX image
 make docker-compose                             # run container
 ```
@@ -67,6 +62,9 @@ For other install methods, refer to the [Install.md](https://github.com/ansible/
 Configure tower-cli for your new AWX host as shown earlier.  Import from a JSON file named assets.json
 
 ```
+$ tower-cli config host <new-awx-host.example.com>
+$ tower-cli config username <user>
+$ tower-cli config password <pass>
 $ tower-cli send assets.json
 ```
 
@@ -74,9 +72,9 @@ $ tower-cli send assets.json
 
 ## Additional Info
 
-If you have two running AWX/Tower hosts, it is possible to copy all assets from one instance to another
+If you have two running AWX hosts, it is possible to copy all assets from one instance to another
 
-```$ tower-cli receive --tower-host tower1.example.com --all | tower-cli send --tower-host tower2.example.com```
+```$ tower-cli receive --tower-host old-awx-host.example.com --all | tower-cli send --tower-host new-awx-host.example.com```
 
 
 
@@ -97,6 +95,4 @@ Export a credential named "My Credential"
 You could import anything except an organization defined in a JSON file named assets.json
 
 ```$ tower-cli send --prevent organization assets.json```
-
-
 
