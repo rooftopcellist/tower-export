@@ -72,13 +72,17 @@ For other install methods, refer to the [Install.md](https://github.com/ansible/
 
 Import from a JSON file named assets.json
 
-```$ tower-cli send assets.json```
+```
+$ tower-cli send assets.json
+# tower-cli send credentials.json
+```
 
-Import anything except an organization defined in a JSON file named assets.json
+Alternatively, you could import anything except an organization defined in a JSON file named assets.json
 
 ```$ tower-cli send --prevent organization assets.json```
 
-Copy all assets from one instance to another
+
+If you have two running AWX/Tower instances, it is possible to copy all assets from one instance to another
 
 ```$ tower-cli receive --tower-host tower1.example.com --all | tower-cli send --tower-host tower2.example.com```
 
