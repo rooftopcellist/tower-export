@@ -35,11 +35,12 @@ For more information on installing tower-cli look [here](http://tower-cli.readth
 
 Export all objects
 
-```$ tower-cli receive --all```
+```$ tower-cli receive --all > assets.json```
 
 Export all credentials
 
-```$ tower-cli receive --credential all```
+```$ tower-cli receive --credential all > credentials.json```
+>> Note: This exports the credentials with blank strings for passwords and secrets
 
 Export a credential named "My Credential"
 
