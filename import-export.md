@@ -37,14 +37,6 @@ Export all objects
 
 ```$ tower-cli receive --all > assets.json```
 
-Export all credentials
-
-```$ tower-cli receive --credential all > credentials.json```
->> Note: This exports the credentials with blank strings for passwords and secrets
-
-Export a credential named "My Credential"
-
-```$ tower-cli receive --credential "My Credential"```
 
 
 ### Teardown Old AWX
@@ -74,15 +66,35 @@ Import from a JSON file named assets.json
 
 ```
 $ tower-cli send assets.json
-# tower-cli send credentials.json
 ```
 
-Alternatively, you could import anything except an organization defined in a JSON file named assets.json
+--------------------------------------------------------------------------------
 
-```$ tower-cli send --prevent organization assets.json```
-
+## Additional Info
 
 If you have two running AWX/Tower instances, it is possible to copy all assets from one instance to another
 
 ```$ tower-cli receive --tower-host tower1.example.com --all | tower-cli send --tower-host tower2.example.com```
+
+
+
+#### More Granular Exports:
+
+Export all credentials
+
+```$ tower-cli receive --credential all > credentials.json```
+> Note: This exports the credentials with blank strings for passwords and secrets
+
+Export a credential named "My Credential"
+
+```$ tower-cli receive --credential "My Credential"```
+
+#### More Granular Imports:
+
+
+You could import anything except an organization defined in a JSON file named assets.json
+
+```$ tower-cli send --prevent organization assets.json```
+
+
 
