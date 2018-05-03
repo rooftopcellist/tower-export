@@ -4,12 +4,12 @@
 
 This feature allows AWX users to export resources from a running tower node, and import them into another 
 tower node.  This tool is especially useful for users who want to upgrade from an old version of AWX when 
-the upgrade path is not seamless as a result of database changes, etc.  
+the upgrade path is not seamless as a result of database migrations, dependency changes, etc.  
 
 This allows you to export your job templates and other objects (not including credential secrets) to a JSON 
 file, which you can then re-import to a freshly installed AWX version of your choosing.  
 
-Currently, this tool does not support export/import of the following:
+This tool does __not__ support export/import of the following:
 * Logs/history
 * Credential passwords
 * LDAP/AWX config
@@ -64,7 +64,7 @@ For other install methods, refer to the [Install.md](https://github.com/ansible/
 ### Import Resources
 
 
-Import from a JSON file named assets.json
+Configure tower-cli for your new AWX host as shown earlier.  Import from a JSON file named assets.json
 
 ```
 $ tower-cli send assets.json
@@ -74,7 +74,7 @@ $ tower-cli send assets.json
 
 ## Additional Info
 
-If you have two running AWX/Tower instances, it is possible to copy all assets from one instance to another
+If you have two running AWX/Tower hosts, it is possible to copy all assets from one instance to another
 
 ```$ tower-cli receive --tower-host tower1.example.com --all | tower-cli send --tower-host tower2.example.com```
 
