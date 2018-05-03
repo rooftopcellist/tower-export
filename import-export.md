@@ -25,7 +25,7 @@ The AWX host URL, user, and password must be set for the AWX instance to be expo
 ```
 $ tower-cli config host <tower.example.com>
 $ tower-cli config username <user>
-$ tower-cli config username <pass>
+$ tower-cli config password <pass>
 ```
 
 For more information on installing tower-cli look [here](http://tower-cli.readthedocs.io/en/latest/quickstart.html).
