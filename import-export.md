@@ -33,13 +33,13 @@ For more information on installing tower-cli look [here](http://tower-cli.readth
 
 ### Export Resources
 
-#### Export all objects
+Export all objects
 ```$ tower-cli receive --all```
 
-#### Export all credentials
+Export all credentials
 ```$ tower-cli receive --credential all```
 
-#### Export a credential named "My Credential"
+Export a credential named "My Credential"
 ```$ tower-cli receive --credential "My Credential"```
 
 
@@ -66,12 +66,12 @@ For other install methods, refer to the [Install.md](https://github.com/ansible/
 ### Import Resources
 
 
-#### Import from a JSON file named assets.json
+Import from a JSON file named assets.json
 ```$ tower-cli send assets.json```
 
-#### Import anything except an organization defined in a JSON file named assets.json
+Import anything except an organization defined in a JSON file named assets.json
 ```$ tower-cli send --prevent organization assets.json```
 
-#### Copy all assets from one instance to another
+Copy all assets from one instance to another
 ```$ tower-cli receive --tower-host tower1.example.com --all | tower-cli send --tower-host tower2.example.com```
 
